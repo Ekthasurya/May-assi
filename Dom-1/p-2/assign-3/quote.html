@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+</head>
+<body>
+    <button onclick="catchThequote()">Show Quote in console</button>
+    <p id="quote">Talk is cheap Show me the code</p>
+</body>
+</html>
+
+<script>
+    function catchThequote(){
+        var input1 = document.getElementById("quote");
+        console.log(input1.textContent)
+    }
+</script>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+</head>
+<body>
+	<input type="text" name="name" id="name">
+	<select id="gender">
+		<option value="">--</option>
+		<option value="male">M</option>
+		<option value="female">F</option>
+	</select>
+	<input type="text" name="email" id="email">
+	<input type="text" name="mobile" id="mobile">
+	<hr>
+	<h1 id="dName">NAME</h1>
+	<h2 id="dGender">GENDER</h2>
+	<h3 id="dEmail">EMAIL</h3>
+	<h4 id="dMobile">MOBILE</h4>
+	<hr>
+	<button onclick="showName()">NAME</button>
+	<button onclick="showGender()">GENDER</button>
+	<button onclick="showEmail()">EMAIL</button>
+	<button onclick="showMobile()">MOBILE</button>
+	<button onclick="resetForm()">RESET FORM</button>
+	<button onclick="resetDisplay()">RESET DISPLAY</button>
+	<script type="text/javascript">
+		function showName() {
+			var input1 = document.getElementById("name").value
+			var name = document.getElementById("dName")
+			name.textContent = input1;
+		}
+
+		function showGender() {
+			var input2 = document.getElementById("gender").value
+			var gender = document.getElementById("dGender")
+			gender.textContent = input2;
+		}
+
+		function showEmail() {
+			var input3 = document.getElementById("email").value
+			var email = document.getElementById("dEmail")
+			email.textContent = input3;
+		}
+
+		function showMobile() {
+			var input4 = document.getElementById("mobile").value
+			var mobile = document.getElementById("dMobile")
+			mobile.textContent = input4;
+		}
+
+		function resetForm() {
+			var head1 = document.getElementById("dName")
+			head1.textContent ="NAME"
+			var head2 = document.getElementById("dGender")
+			head2.textContent ="GENDER"
+			var head3 = document.getElementById("dEmail")
+			head3.textContent ="EMAIL"
+			var head4 = document.getElementById("dMobile")
+			head4.textContent ="MOBILE"
+		}
+
+		function resetDisplay() {
+			var head1 = document.getElementById("dName")
+			head1.textContent =" "
+			var head2 = document.getElementById("dGender")
+			head2.textContent =" "
+			var head3 = document.getElementById("dEmail")
+			head3.textContent =" "
+			var head4 = document.getElementById("dMobile")
+			head4.textContent =" "
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Masai Games</title>
+    <style>
+       #keypad {
+        width: 500px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+    button {
+        padding: 10px;
+        font-size: 16px;
+    }
+    #min{
+      width: 70px;
+      height: 70px;
+      background-color: aqua;
+    }
+    #max{
+      width: 70px;
+      height: 70px;
+      background-color: yellow;
+    }
+    #score{
+      width: 100px;
+      height: 100px;
+      background-color: brown;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="min"></div>
+    <div id="max"></div>
+    <div id="score">
+    </div>
+    <div id="keypad">
+      <button onclick="updateScore(0)">0</button>
+      <button  onclick="updateScore(1)">1</button>
+      <button onclick="updateScore(2)">2</button>
+      <button onclick="updateScore(3)">3</button>
+      <button onclick="updateScore(4)">4</button>
+      <button onclick="updateScore(5)">5</button>
+      <button onclick="updateScore(6)">6</button>
+      <button onclick="updateScore(7)">7</button>
+      <button onclick="updateScore(8)">8</button>
+      <button onclick="updateScore(9)">9</button>
+    </div>
+    <button id="enter">ENTER</button>
+  </body>
+  <script>
+      let currentScore =0;
+      let maxScore =0;
+      let minScore =0;
+
+      function updateScore(num){
+        currentScore = parseInt(document.getElementById("score").textContent + num);
+        document.getElementById("score").textContent = currentScore;
+      }
+
+      document.getElementById("enter").addEventListener("click",()=>{
+        if (currentScore < minScore || minScore === 0) {
+            minScore = currentScore;
+        }
+        if (currentScore > maxScore || maxScore === 0) {
+            maxScore = currentScore;
+        }
+        currentScore = 0;
+        document.getElementById('score').innerText = currentScore;
+        document.getElementById('max').innerText = maxScore;
+        document.getElementById('min').innerText = minScore;
+      })
+  </script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <input id="input1" type="number" placeholder="enter the 1st number">
+    <input id="input2" type="number" placeholder="enter the 2nd number">
+    <br>
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="subtract()">Subtract</button>
+    <button onclick="multiply()">Multiply</button>
+    <button onclick="divide()">Divide</button>
+</body>
+</html>
+<script>
+  function add(){
+    var input1 = document.getElementById("input1").value
+    var input2 = document.getElementById("input2").value
+    var add = parseInt(input1) + parseInt(input2);
+    var add1 = document.createElement("h1")
+    add1.textContent = "ans is " + add;
+    document.querySelector("body").append(add1)
+  }
+  function subtract(){
+    var input1 = document.getElementById("input1").value
+    var input2 = document.getElementById("input2").value
+    var subtract = parseInt(input1) - parseInt(input2);
+    var subtract1 = document.createElement("h1")
+    subtract1.textContent = "ans is " + subtract;
+    document.querySelector("body").append(subtract1)
+  }
+  function multiply(){
+    var input1 = document.getElementById("input1").value
+    var input2 = document.getElementById("input2").value
+    var multiply = parseInt(input1) * parseInt(input2);
+    var multiply1 = document.createElement("h1")
+    multiply1.textContent = "ans is " + multiply;
+    document.querySelector("body").append(multiply1)
+  }
+  function divide(){
+    var input1 = document.getElementById("input1").value
+    var input2 = document.getElementById("input2").value
+    var divide = parseInt(input1) / parseInt(input2);
+    var divide1 = document.createElement("h1")
+    divide1.textContent = "ans is " + divide;
+    document.querySelector("body").append(divide1)
+  }
+</script>
