@@ -1,0 +1,11 @@
+1. What are the different data types present in javascript?
+2. What is hoisting in JavaScript?
+3. What is the difference between null and undefined?
+4. What is the purpose of the "this" keyword in JavaScript?
+5. What are closures in javaScript?
+6. What is event delegation in JavaScript and why is it useful?
+7. What is implicit type coercion in JavaScript?
+8. What are higher-order functions in JavaScript?
+9. What is the difference between function declarations and expressions?
+10. What is a callback function in JavaScript?
+11. Explain the concept of event bubbling in JavaScript?
