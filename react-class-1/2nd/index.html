@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+
+     let a = "Seize the day";
+
+     let data = true;
+
+     const element = <div>
+                      <p>Seize the day</p> 
+                      <p>{a}</p>
+                     { data?<p>it is react class</p>:
+                      <p>it is not react class</p>
+                     }
+
+                     </div>
+      
+
+
+
+  const reactRoot = ReactDOM.createRoot(document.getElementById("root"));
+  reactRoot.render(element);
+    </script>
+  </body>
+</html>
