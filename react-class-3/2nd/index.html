@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function App() {
+      let [val, setval] = React.useState('')
+      let [arr, setarr] = React.useState([])
+
+      function eventHandler(e) {
+        setval(e.target.value)
+      }
+
+      function submitHandler(e) {
+        e.preventDefault()
+        let newarr = [...arr, val]
+        setarr(newarr)
+        console.log(newarr)
+        setval('')
+      }
+
+      function dltHandler(index) {
+        let dltarr = arr.filter((_, i) => i !== index)
+        setarr(dltarr)
+      }
+
+      return (
+        <div>
+          <form onSubmit={submitHandler}>
+            <input
+              type="text"
+              value={val}
+              onChange={eventHandler}
+              placeholder="enter hobies..."
+            />
+            <button type="submit">submit</button>
+          </form>
+
+          <ol>
+            {arr.map((ele, index) => {
+              return (
+                <div>
+                  <li key={index}>{ele}</li>
+                  <button
+                    onClick={() => {
+                      dltHandler(index)
+                    }}
+                  >
+                    delete
+                  </button>
+                </div>
+              )
+            })}
+          </ol>
+        </div>
+      )
+    }
+
+    const reactRoot = ReactDOM.createRoot(document.getElementById('root'))
+    reactRoot.render(<App />)
+  </script>
+</html>

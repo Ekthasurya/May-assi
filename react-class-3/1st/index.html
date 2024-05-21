@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function isValid(color) {
+      const a = new Option().style
+      a.color = color
+      return a.color !== ''
+    }
+
+    function ColorDiv({ val }) {
+      const ivalid = isValid(val)
+      if (ivalid) {
+        return (
+          <>
+            <div
+              style={{
+                backgroundColor: val,
+                border: '2px solid black',
+                height: '300px',
+              }}
+            ></div>
+          </>
+        )
+      } else {
+        return (
+          <>
+            <div>
+              <h1>the color you enter is invalid</h1>
+            </div>
+          </>
+        )
+      }
+    }
+
+    function App() {
+      const [val, setval] = React.useState('#FFFFFF')
+
+      function eventhandle(e) {
+        setval(e.target.value)
+      }
+
+      return (
+        <>
+          <input type="text" value={val} onChange={eventhandle} />
+          <ColorDiv val={val} />
+        </>
+      )
+    }
+
+    const reactRoot = ReactDOM.createRoot(document.getElementById('root'))
+    reactRoot.render(<App />)
+  </script>
+</html>
