@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+     function App(){
+        const [inputval, setinputval] = React.useState('')
+        const [todo, settodo] = React.useState([])
+        
+
+
+        function eventHandler(e) {
+            setinputval(e.target.value)
+
+        }
+        function submitHandler() {
+            if (inputval.trim() !== "") {
+                settodo(prevArr => [...prevArr, { task: inputval, completed: false }])
+                setinputval("")
+                console.log(todo)
+            }
+
+
+        }
+        function deleteEvent(i) {
+            const newarr = todo.filter((_, index) => index !== i)
+            console.log(newarr)
+            settodo(newarr)
+
+        }
+        function completedEvent(index) {
+            settodo((prevarr) => {
+                const updatedArr = [...prevarr];
+                updatedArr[index].completed = !updatedArr[index].completed
+                return updatedArr
+            })
+
+        }
+        
+       
+        function Addarr() {
+            return (
+                <div >
+                    {todo.map((ele, i) => {
+                        return (
+                            <>
+                                <div key={i} className="task" style={{ backgroundColor: ele.completed ?  "lightPink": "aqua",  display:"flex",  alignItems: "center", gap: "20px", width: "400px", height: "auto" , border:" 1px solid " ,margin: "15px" ,boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"  }}>
+                                    <h1 >{ele.task}</h1>
+                                    <button onClick={() => deleteEvent(i)} style={{ width: "50px", height: "auto" }}>delete</button>
+                                    <button onClick={() => completedEvent(i)} className="completedbtn" style={{ width: "auto", height: "auto" }}>{ele.completed ? "In Progress" : "mark as completed"}</button>
+                                </div>
+                            </>
+                        )
+
+                    })}
+                </div>
+            )
+        }
+
+       
+        return (
+            <div>
+                <div>
+                    <input type="text" value={inputval} onChange={eventHandler} placeholder="enter your task" />
+                    <button onClick={submitHandler}>Add Task</button>
+                </div>
+                <div>
+                    
+                    <Addarr />
+                </div>
+
+            </div>
+
+
+        )
+    }
+
+     
+
+    const reactRoot = ReactDOM.createRoot(document.getElementById('root'))
+    reactRoot.render(<App />)
+  </script>
+</html>
