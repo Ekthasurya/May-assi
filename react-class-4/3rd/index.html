@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <style>
+    
+  </style>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    
+    function UserProfile({user}){
+        return (
+            <div style={{backgroundColor:"pink",display:"flex",padding:"10px",  alignItems: "center", gap: "20px", width: "400px", height: "auto" , border:" 1px solid " ,margin: "15px" ,boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}} >
+             <h1>{user.name}</h1>
+             <p>Email: {user.email}</p>
+             <p>Location: {user.location}</p>
+            </div>
+        )
+    }
+
+    const initialUsers = [
+  { id: 1, name: 'Virat Kohli', email: 'virat@example.com', location: 'Bangalore' },
+  { id: 2, name: 'Ms Dhoni', email: 'ms@example.com', location: 'Chennai' },
+  { id: 3, name: 'Rohit Sharma', email: 'rohit@example.com', location: 'Mumbai' },
+  { id: 4, name: 'Md Siraj', email: 'siraj@example.com', location: 'Bangalore' },
+  { id: 5, name: 'Kl Rahul', email: 'rahul@example.com', location: 'Lacknow' },
+  { id: 6, name: 'Shreyas Iyar', email: 'iyar@example.com', location: 'Kolkata' },
+  
+];
+
+
+function App() {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+
+
+const filteredUsers = initialUsers.filter(user =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+
+  return (
+    <div>
+      <header>
+        <h1>User Profiles</h1>
+        <input
+          type="text"
+          placeholder="Search by name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </header>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)"}} >
+        {filteredUsers.map(user => (
+          <UserProfile key={user.id} user={user} />
+        ))}
+      </div>
+    </div>
+  );
+}
+     
+    const Root = ReactDOM.createRoot(document.getElementById("root"))
+    Root.render(<App />)
+  </script>
+</html>
