@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>   
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/babel">
+   
+   const { useState, useEffect } = React;
+
+function TaskManger() {
+  const [task, setTask] = useState([]);
+  const [formState, setFormState] = useState({
+    title: "",
+    isCompleted: false,
+    assignee: "",
+  });
+  const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const fetchTasks = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/todos");
+      setTask(response.data);
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+    }
+  };
+
+  const addTask = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/todos",
+        formState
+      );
+      setTask([...task, response.data]);
+    } catch (error) {
+      console.error("Error adding task:", error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormState({
+      ...formState,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const deleteTask = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/todos/${id}`);
+      setTask(task.filter((task) => task.id !== id));
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
+  const updateTask = async (id, updatedTask) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/todos/${id}`,
+        updatedTask
+      );
+      setTask(task.map((task) => (task.id === id ? response.data : task)));
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  };
+
+  const getAllTasks = async () => {
+    const response = await axios.get('http://localhost:3001/todos');
+    setTask(response.data);
+  };
+
+  const showIncompleteTasks = () => {
+    setTask(task.filter(task => !task.isCompleted));
+  };
+
+
+
+   const filterTaskByAssignee=()=>{
+      setTask(task.filter(task =>task.assignee == filter));
+   };
+
+  return (
+    <div>
+      <h1>Task Manager</h1>
+      <form onSubmit={addTask}>
+        <input
+          type="text"
+          name="title"
+          placeholder="Task Title"
+          value={formState.title}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="checkbox"
+          name="isCompleted"
+          checked={formState.isCompleted}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="assignee"
+          placeholder="Assignee"
+          value={formState.assignee}
+          onChange={handleChange}
+        />
+        <button type="submit">Add Task</button>
+        <br/>
+        <div>
+        <button onClick={getAllTasks}>Get All Tasks</button>
+      <button onClick={showIncompleteTasks}>Show Incomplete Tasks</button>
+      <input
+        type="text"
+        placeholder="Filter by Assignee"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+      />
+      <button onClick={filterTaskByAssignee}>Filter Tasks</button>
+      </div>
+      </form>
+
+      <ul>
+        {task.map((task) => (
+          <li key={task.id}>
+            <input
+              type="text"
+              value={task.title}
+              onChange={(e) =>
+                updateTask(task.id, { ...task, title: e.target.value })
+              }
+            />
+            <input
+              type="checkbox"
+              checked={task.isCompleted}
+              onChange={(e) =>
+                updateTask(task.id, {
+                  ...task,
+                  isCompleted: e.target.checked,
+                })
+              }
+            />
+            <input
+              type="text"
+              value={task.assignee}
+              onChange={(e) =>
+                updateTask(task.id, { ...task, assignee: e.target.value })
+              }
+            />
+            <button onClick={() => deleteTask(task.id)}>Delete</button>
+           
+
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<TaskManger />);
+
+    
+  </script>
+</html>
