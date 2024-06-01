@@ -1,0 +1,39 @@
+{
+    "todo": [
+      {
+        "id": "1",
+        "title": "Buy groceries",
+        "description": "Milk, Bread, Butter, Eggs",
+        "due_date": "2024-05-22",
+        "status": "pending"
+      },
+      {
+        "id": "2",
+        "title": "Finish project report",
+        "description": "Complete the final draft of the project report and submit it to the supervisor.",
+        "due_date": "2024-05-25",
+        "status": "in progress"
+      },
+      {
+        "id": "3",
+        "title": "Workout",
+        "description": "1-hour session at the gym: cardio and strength training.",
+        "due_date": "2024-05-21",
+        "status": "completed"
+      },
+      {
+        "id": "4",
+        "title": "Call plumber",
+        "description": "Fix the leaking sink in the kitchen.",
+        "due_date": "2024-05-23",
+        "status": "pending"
+      },
+      {
+        "id": "5",
+        "title": "Read book",
+        "description": "Finish reading 'The Great Gatsby'.",
+        "due_date": "2024-05-27",
+        "status": "not started"
+      }
+    ]
+  }
