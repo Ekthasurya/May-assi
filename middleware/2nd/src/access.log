@@ -1,0 +1,8 @@
+GET 200 686 - 24.136 ms Mon, 22 Jul 2024 20:37:30 GMT 1.1 /
+
+GET 201 384 - 4.153 ms Mon, 22 Jul 2024 20:38:14 GMT 1.1 /get-users
+
+PUT - - - - ms Mon, 22 Jul 2024 20:41:10 GMT 1.1 /users/:id
+
+DELETE 201 19 - 8.813 ms Mon, 22 Jul 2024 20:43:03 GMT 1.1 /delete/:id
+
